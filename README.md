@@ -34,4 +34,7 @@ The concept is around building a storefront between adopters and conservationist
 
 7) For the companion very light and basic react app, install the front end dependencies by running npm install, then launch a browser to http://localhost:3000 by running npm run start. Launch Metamask, connect to the truffle blockchain making sure to copy the seed phrase.
 
+## Kind Notes
+
+Some caveats - the code has no additional embellishments such as uport integration due to the lack of time to develop. The author aims to apply some of the learning from this project to develop larger and more applicable contracts and is interested/curious in the gameify aspects. If any of you are interested in staying in touch, please don't hesitate to reach out to me. I've enjoyed the Academy, the learnings and new friends/connections. And last note, tools like Truffle has made coding quite more straightforward I would agree - hope to see more such tools from the community in the future. 
 

@@ -14,7 +14,7 @@ import './Store.sol';
 /// @author GBaltazar
 /// @notice Very basic simulation
 /// @dev Gas costs warning: functions may not execute if gas requirements are too high 
-contract MEWMarketplace {
+contract Marketplace {
   mapping (address => bool) public MEWstoreOwners;
   mapping (address => bool) public MEWadmins;
   address[] public MEWstoreOwnerRequests;
@@ -51,7 +51,7 @@ contract MEWMarketplace {
   /// @param name is the name of the store.
   /// @param description is the description of the store.
   function MEWcreateNewStore(string memory name, string memory description) public isStoreOwner {
-    MEWStore newStore = new MEWStore(msg.sender, name, description);
+    Store newStore = new Store(msg.sender, name, description);
     MEWstoreAddressesByOwner[msg.sender].push(address(newStore));
     emit MEWNewStoreCreated(msg.sender, address(newStore));
   } 

@@ -14,7 +14,7 @@ import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 /// @author GBaltazar
 /// @notice Very basic simulation; using SafeMath for uint256; product as MEWs
 /// @dev Gas costs warning: functions may not execute if gas requirements are too high
-contract MEWStore {
+contract Store {
   using SafeMath for uint256;
 
   string public MEWname;

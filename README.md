@@ -32,3 +32,6 @@ The concept is around building a storefront between adopters and conservationist
 
 6) Run Truffle. truffle compile, truffle migrate, truffle test
 
+7) For the companion very light and basic react app, install the front end dependencies by running npm install, then launch a browser to http://localhost:3000 by running npm run start. Launch Metamask, connect to the truffle blockchain making sure to copy the seed phrase.
+
+

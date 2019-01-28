@@ -1,0 +1,26 @@
+{
+  "name": "dapp_mewmarketplace-ginobaltazar7",
+  "version": "1.0.0",
+  "description": "Mewmarketplace-ginobaltazar7",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ginobaltazar7/dapp_mewmarketplace.git"
+  },
+  "keywords": [
+    "dapp"
+  ],
+  "author": "ginobaltazar7",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ginobaltazar7/dapp_mewmarketplace/issues"
+  },
+  "homepage": "https://github.com/ginobaltazar7/dapp_mewmarketplace#readme",
+  "dependencies": {
+    "openzeppelin-solidity": "^2.1.2",
+    "zeppelin-solidity": "^1.12.0"
+  }
+}

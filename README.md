@@ -12,7 +12,7 @@ Ganache CLI
 ## MEW Marketplace
 
 Project is affectionately inspired by my love of cats and animals, and my passion for conservation of wildlife species.
-The concept is around building a storefront between adopters and conservationist/storeowners, purchases in which funds conservation causes..
+The concept is around building a storefront between adopters and conservationist/storeowners. Ether purchases on the store funds conservation causes.
 
 - Admins - approving store requests
 - MEW Adopters - browse through digitized animals

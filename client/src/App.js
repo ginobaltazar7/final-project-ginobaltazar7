@@ -1,73 +1,84 @@
-import React, { Component } from "react";
-import SimpleStorageContract from "./contracts/SimpleStorage.json";
-import getWeb3 from "./utils/getWeb3";
+import React, { Component } from 'react'
+import MarketplaceContract from '../build/contracts/Marketplace.json'
+import getWeb3 from './utils/getWeb3'
+import AdminComponent from './AdminComponent';
+import StoreOwnerComponent from './StoreOwnerComponent.js';
+import ShopperComponent from './ShopperComponent';
 
-import "./App.css";
+import './css/oswald.css'
+import './css/open-sans.css'
+import './css/pure-min.css'
+import './App.css'
+
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contract: null };
+  constructor(props) {
+    super(props)
 
-  componentDidMount = async () => {
-    try {
-      // Get network provider and web3 instance.
-      const web3 = await getWeb3();
-
-      // Use web3 to get the user's accounts.
-      const accounts = await web3.eth.getAccounts();
-
-      // Get the contract instance.
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = SimpleStorageContract.networks[networkId];
-      const instance = new web3.eth.Contract(
-        SimpleStorageContract.abi,
-        deployedNetwork && deployedNetwork.address,
-      );
-
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance }, this.runExample);
-    } catch (error) {
-      // Catch any errors for any of the above operations.
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
-      );
-      console.error(error);
+    this.state = {
+      accountType: '',
+      web3: null,
+      marketplaceInstance: null,
+      currentAccount: ''
     }
-  };
+  }
 
-  runExample = async () => {
-    const { accounts, contract } = this.state;
+  componentWillMount() {
+    // Get network provider and web3 instance.
+    // See utils/getWeb3 for more info.
 
-    // Stores a given value, 5 by default.
-    await contract.methods.set(5).send({ from: accounts[0] });
+    getWeb3.then(results => {
+      this.setState({
+        web3: results.web3
+      })
 
-    // Get the value from the contract to prove it worked.
-    const response = await contract.methods.get().call();
+      // Instantiate contract once web3 provided.
+      this.instantiateContract()
+    })
+    .catch(() => {
+      console.log('Error finding web3.')
+    })
+  }
 
-    // Update state with the result.
-    this.setState({ storageValue: response });
-  };
+  instantiateContract() {
+    const contract = require('truffle-contract')
+    const marketplace = contract(MarketplaceContract)
+    marketplace.setProvider(this.state.web3.currentProvider)
+
+    this.state.web3.eth.getAccounts((error, accounts) => {
+      marketplace.deployed()
+        .then((instance) => this.setState({marketplaceInstance: instance, currentAccount: accounts[0]}))
+        .then(() => this.state.marketplaceInstance.MEWfetchUserType.call({from: accounts[0]}))
+        .then((accountType) => this.setState({ accountType: accountType }))
+    })
+  }
 
   render() {
-    if (!this.state.web3) {
-      return <div>Loading Web3, accounts, and contract...</div>;
-    }
+    const accountType = this.state.accountType;
     return (
       <div className="App">
-        <h1>Good to Go!</h1>
-        <p>Your Truffle Box is installed and ready.</p>
-        <h2>Smart Contract Example</h2>
-        <p>
-          If your contracts compiled and migrated successfully, below will show
-          a stored value of 5 (by default).
-        </p>
-        <p>
-          Try changing the value stored on <strong>line 40</strong> of App.js.
-        </p>
-        <div>The stored value is: {this.state.storageValue}</div>
+        <main style={{marginTop: '25px'}} className="container">
+          <div className="pure-g">
+            <div className="pure-u-1-1">
+              {accountType === '' && <p>Loading...</p>}
+              {accountType === 'MEW admin' && <AdminComponent
+                  web3={this.state.web3}
+                  currentAccount={this.state.currentAccount}
+                  marketplace={this.state.marketplaceInstance}></AdminComponent>}
+              {accountType === 'MEW storeOwner' && <StoreOwnerComponent
+                  web3={this.state.web3}
+                  currentAccount={this.state.currentAccount}
+                  marketplace={this.state.marketplaceInstance}></StoreOwnerComponent>}
+              {accountType === 'MEW adopter' && <ShopperComponent
+                  web3={this.state.web3}
+                  currentAccount={this.state.currentAccount}
+                  marketplace={this.state.marketplaceInstance}></ShopperComponent>}
+            </div>
+          </div>
+        </main>
       </div>
     );
   }
 }
 
-export default App;
+export default App

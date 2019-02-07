@@ -27,7 +27,7 @@ class ShopperComponent extends Component {
 
         marketplace.MEWfetchStoreOwnerRequests()
           .then(storeOwnerRequests => {
-            storeOwnershipState = MEWstoreOwnerRequests.includes(currentAccount)
+            storeOwnershipState = storeOwnerRequests.includes(currentAccount)
                 ? 'requestSent'
                 : 'noRequestSent';
           })

@@ -6,8 +6,12 @@ Gino Baltazar - baltazar.gino@gmail.com
 ## Requirements
 
 Truffle v5.0.2
+
 Solidity compiler v0.5.0
+
 Ganache CLI
+
+Node 11.9+
 
 ## MEW Marketplace
 
@@ -37,4 +41,6 @@ The concept is around building a storefront between adopters and conservationist
 ## Kind Notes
 
 Some caveats - the code has no additional embellishments such as uport integration due to the lack of time to develop. The author aims to apply some of the learning from this project to develop larger and more applicable contracts and is interested/curious in the gameify aspects. If any of you are interested in staying in touch, please don't hesitate to reach out to me. I've enjoyed the Academy, the learnings and new friends/connections. And last note, tools like Truffle have made coding quite more straightforward I would agree - hope to see more such tools from the community in the future. 
+
+## Read the SupplementalREADME for updated info
 

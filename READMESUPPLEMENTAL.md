@@ -55,6 +55,7 @@ Enclosed is a link to a number of screenshots in the following folder describing
 
 3. On the Metamask, go to Account 2 by copying/pasting a private key from ganache, refresh the localhost:3000 browser tab to see a request with Ether paid to get permission to create shop. Going back to Account 1 will see an approval, which subsequently can be used to create a shop and update product inventory.
 
+Screenshots link --> https://github.com/dev-bootcamp-2019/final-project-ginobaltazar7/tree/master/frontendscreenshots
 
 
 

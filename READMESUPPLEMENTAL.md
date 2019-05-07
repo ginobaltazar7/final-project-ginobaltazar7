@@ -18,7 +18,7 @@ Follow the steps outlined either in a VirtualBox VM environment or another virtu
 4. sudo apt install curl
 5. sudo apt-get update
 6. curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-7. >> Close and reopen terminal or command prompt <<
+7. Close and reopen terminal or command prompt
 8. command -v nvm
 9. nvm install node
 10. node -v (should say v.11.9.0)
